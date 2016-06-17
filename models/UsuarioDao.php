@@ -1,21 +1,23 @@
 <?php
+
 include_once 'conexao.php';
 include_once 'usuario.php';
-class UsuarioDao {
-    public static $instance;
 
+class UsuarioDao {
+
+    public static $instance;
 
     public function __construct() {
         
     }
-    
+
     public static function getInstance() {
         if (!isset(self::$instance))
             self::$instance = new UsuarioDao();
 
         return self::$instance;
     }
-    
+
     public function consultarLogin(Usuario $usuario) {
         // Prepara a sql para consulta
         $sql = "SELECT  nome from usuario where usuario = ? and senha = ?";
@@ -35,8 +37,27 @@ class UsuarioDao {
         endif;
     }
 
-    public function localizar(Usuario $usuario) {
-        
+    public function localizar(Usuario $user) {
+
+        // metodo preparament 
+        $sql = "SELECT * FROM usuario  where id = :id";
+        $rs = Conexao::getInstance()->prepare($sql);
+        $rs->bindValue(":id", $user->getId());
+
+        if ($rs->execute()) {
+            if ($rs->rowCount() > 0) {
+                while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
+                    $usario = new Usuario();
+                    $usario->setId($row->id);
+                    $usario->setNome($row->nome);
+                    $usario->setEmail($row->mail);
+                    $usario->setUsuario($row->usuario);
+                }
+                return $usario;
+            }else{
+                return false;
+            }
+        }
     }
 
     public function inserir($param) {
@@ -53,26 +74,25 @@ class UsuarioDao {
 
     public function listar() {
         try {
-              $sql = "SELECT * FROM usuario order by nome";
-              
-              $result = Conexao::getInstance()->query($sql);
-              
-              $lista = array();
-              $i = 0;
-              while ($row = $result->fetch(PDO::FETCH_OBJ)){
-                  $usario = new Usuario();
-                  $usario->setId($row->id);
-                  $usario->setNome($row->nome);
-                  $usario->setEmail($row->mail);
-                  $usario->setUsuario($row->usuario);                
-                  $lista[$i] = $usario;
-                  $i++;
-              }
-              return $lista;
-              
-          } catch (Exception $e) {
-              print "Ocorreu um erro ao tentar executar esta ação, foi gerado um LOG do mesmo, tente novamente mais tarde.";
-          }
+            $sql = "SELECT * FROM usuario order by nome";
+
+            $result = Conexao::getInstance()->query($sql);
+
+            $lista = array();
+            $i = 0;
+            while ($row = $result->fetch(PDO::FETCH_OBJ)) {
+                $usario = new Usuario();
+                $usario->setId($row->id);
+                $usario->setNome($row->nome);
+                $usario->setEmail($row->mail);
+                $usario->setUsuario($row->usuario);
+                $lista[$i] = $usario;
+                $i++;
+            }
+            return $lista;
+        } catch (Exception $e) {
+            print "Ocorreu um erro ao tentar executar esta ação, foi gerado um LOG do mesmo, tente novamente mais tarde.";
+        }
     }
 
 }

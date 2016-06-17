@@ -1,4 +1,5 @@
 <?php
+
 include_once 'UsuarioDao.php';
 session_start();
 
@@ -7,10 +8,10 @@ class Login {
     public function __construct() {
         
     }
-    
+
     public function logar(Usuario $user) {
         $usuarioDao = new UsuarioDao();
-        if($usuarioDao->consultarLogin($user))
+        if ($usuarioDao->consultarLogin($user))
             return TRUE;
         else
             return FALSE;
@@ -22,11 +23,20 @@ class Login {
     }
 
     public function verificaLogin() {
-        if (!isset($_SESSION["logado"])) {            
+        if (!isset($_SESSION["logado"])) {
             return false;
             session_destroy();
-        }else{
+        } else {
             return true;
+        }
+    }
+
+    public function localizar(Usuario $user) {
+        $usuarioDao = new UsuarioDao();
+        if ($usuario = $usuarioDao->localizar($user)){
+            return $usuario;
+        }else {
+            return null;
         }
     }
 

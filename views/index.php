@@ -22,6 +22,8 @@ if ($login->verificaLogin()) {
         <meta name="author" content="Prof.: Xeo" >
         <meta name="Description" content="Layout padrão página html" >
         <link rel="stylesheet" type="text/css" href="../skin/css/style.css">
+        <link rel="stylesheet" type="text/css" href="../skin/css/longin.css">
+        
     </head>
     <body>
         <?php
@@ -36,9 +38,16 @@ if ($login->verificaLogin()) {
             case 'servicos':
                 include_once 'servicos.php';
                 break;
-            case 'clientes':
-                include_once 'clientes.php';
+            case 'usuarios':
+                include_once 'usuarios.php';
                 break;
+            case 'userview':
+                include_once './view-user.php';
+                break;
+            case 'cadastrar':
+                include_once './usuarios/cadastrar.php';
+                break;
+            
             case 'produtos':
                 include_once 'produtos.php';
                 break;

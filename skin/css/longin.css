@@ -29,6 +29,10 @@ form, .boxe{
     font-size: 12px;
     line-height: 20px;
 }
+
+#meuform{
+    width: 100%;
+}
 form > fieldset{
     margin: 5px;
     padding: 0.5em;
@@ -76,6 +80,9 @@ form > fieldset > input{
 
 .botao.reset{
     background: #95a5a6;
+    text-align: center;
+    line-height: 25px;
+    text-decoration: none;
 }
 
 .botao.reset:hover{
