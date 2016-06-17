@@ -29,6 +29,9 @@
                 <label>Email</label>
                 <input id="mail" type="text" name="email" value="<?php if(!empty($usario->getEmail())) echo $usario->getEmail(); ?>" />
 
+                <label>Senha</label>
+                <input id="senha" type="text" name="senha" value="<?php if(!empty($usario->getSenha())) echo $usario->getSenha(); ?>" />
+
                 <input class="botao" type="submit" name="botao" value="editar" />
                 <a class='botao reset' href="index.php?op=usuarios">Voltar</a>
                 <a class='botao reset' href="../controllers/loginController.php?botao=excluir&id=<?php echo $usario->getId(); ?>">Excluir</a>

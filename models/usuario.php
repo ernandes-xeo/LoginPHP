@@ -49,6 +49,16 @@ class Usuario {
     function setSenha($senha) {
         $this->senha = $senha;
     }
+    
+    
+    public function localizar(Usuario $user) {
+        $usuarioDao = new UsuarioDao();
+        if ($usuario = $usuarioDao->localizar($user)){
+            return $usuario;
+        }else {
+            return null;
+        }
+    }
 
     function __construct() {
         

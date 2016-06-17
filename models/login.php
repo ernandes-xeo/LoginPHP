@@ -31,13 +31,6 @@ class Login {
         }
     }
 
-    public function localizar(Usuario $user) {
-        $usuarioDao = new UsuarioDao();
-        if ($usuario = $usuarioDao->localizar($user)){
-            return $usuario;
-        }else {
-            return null;
-        }
-    }
+
 
 }

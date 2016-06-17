@@ -25,13 +25,14 @@ $usuarios = $usarioDao->listar();
                 <td><?php echo $usuario->getNome() ?></td>
                 <td><?php echo $usuario->getEmail() ?></td>
                 <td align="center">
-                    <a href="../controllers/loginController.php?botao=exibir&id=<?php echo $usuario->getId() ?>">Exibir </a> | 
-                    <a href="../controllers/loginController.php?botao=excluir&id=<?php echo $usuario->getId() ?>">Excluir</a>
+                    <a href="../controllers/usuariosController.php?botao=exibir&id=<?php echo $usuario->getId() ?>">Exibir </a> | 
+                    <a href="../controllers/usuariosController.php?botao=excluir&id=<?php echo $usuario->getId() ?>">Excluir</a>
                    
                 </td>
             <?php } ?>
             </tbody>                    
         </table>  
+        <br />
     </div>
     <section id='left-destaques'>Left com destaques</section>
 </section>

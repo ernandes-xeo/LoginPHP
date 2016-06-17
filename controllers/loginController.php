@@ -25,8 +25,6 @@ switch ($botao) {
         if (!empty($_POST['senha']))
             $usuario->setSenha(md5($_POST['senha']));
 
-            
-
         if (!$login->verificaLogin() && $login->logar($usuario)) {
             $_SESSION['usuario'] = $usuario->getNome();
             $url = 'location: ../views/index.php';
@@ -38,37 +36,7 @@ switch ($botao) {
         }
 
         break;
-    case 'exibir':
-        
-       // echo "Receber paramento do cliente para consultar no banco de dados";
-        $id = $_REQUEST['id'];
-        $usuario->setId($id);
-        $res = $login->localizar($usuario);
-        $_SESSION['dadosUser'] = $res;
-        header('location: ../views/index.php?op=userview');
-        break;
-    
-    case 'editar':
-        var_dump($_REQUEST);
-        echo "Lógica para Editar";
-        
-        break;
-     case 'excluir':
-         var_dump($_REQUEST);
-        echo "Lógica para Excluir";
-        
-        break;
-    case 'cadastrar':
-        var_dump($_REQUEST);
-        header("location: ../views/index.php?op=cadastrar");
-    break;
-
-    case 'Salvar':
-        var_dump($_REQUEST);        
-        echo "Lógica para cadastrar aqui";
-    break;
-
-    case 'sair':
+     case 'sair':
         if ($login->sair())
             $url = 'location:../login.php';
         header($url);

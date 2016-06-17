@@ -23,7 +23,7 @@
                 
 
                 <input class="botao" type="submit" name="botao" value="Salvar" />
-                <a class='botao reset' href="../index.php?op=usuarios">Voltar</a>
+                 <a class='botao reset' href="index.php?op=usuarios">Voltar</a>
 
             </fieldset>
         </form>

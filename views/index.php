@@ -28,37 +28,38 @@ if ($login->verificaLogin()) {
     <body>
         <?php
         // include de aquivos para a formação da página
-        include_once "header.php";
-        include_once "nav.php";
+        include_once "./page/header.php";
+        include_once "./page/nav.php";
 
 
         @$opcao = $_REQUEST['op'];
 
         switch ($opcao) {
             case 'servicos':
-                include_once 'servicos.php';
+                include_once './servicos/servicos.php';
                 break;
             case 'usuarios':
-                include_once 'usuarios.php';
+                include_once './usuarios/usuarios.php';
                 break;
             case 'userview':
-                include_once './view-user.php';
+                include_once './usuarios/view-user.php';
                 break;
             case 'cadastrar':
                 include_once './usuarios/cadastrar.php';
                 break;
             
             case 'produtos':
-                include_once 'produtos.php';
+                include_once './produtos/produtos.php';
                 break;
             case 'ajuda':
-                include_once 'ajuda.php';
+                include_once './help/ajuda.php';
                 break;
             default:
-                include_once "content.php";
+                include_once "./page/content.php";
         }
 
-        include_once "footer.php";
+        
+        include_once "./page/footer.php";
         ?>
     </body>
 </html>

@@ -17,7 +17,7 @@
          */
         ?>
         
-        <form id='meuform' method="POST" action="../controllers/LoginController.php" >
+        <form id='meuform' method="POST" action="../controllers/usuariosController.php" >
             <fieldset> <legend>Login</legend>
                 <input type="hidden" name="id" value="<?php if(!empty($usario->getId())) echo $usario->getId(); ?>"  />
                 <label>Usuário</label>
@@ -29,9 +29,12 @@
                 <label>Email</label>
                 <input id="mail" type="text" name="email" value="<?php if(!empty($usario->getEmail())) echo $usario->getEmail(); ?>" />
 
+                <label>Senha</label>
+                <input id="senha" type="text" name="senha" value="" />
+
                 <input class="botao" type="submit" name="botao" value="editar" />
                 <a class='botao reset' href="index.php?op=usuarios">Voltar</a>
-                <a class='botao reset' href="../controllers/loginController.php?botao=excluir&id=<?php echo $usario->getId(); ?>">Excluir</a>
+                <a class='botao reset' href="../controllers/usuariosController.php?botao=excluir&id=<?php echo $usario->getId(); ?>">Excluir</a>
 
             </fieldset>
         </form>
