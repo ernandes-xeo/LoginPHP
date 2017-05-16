@@ -2,7 +2,7 @@
     <div class="main-contener">
         <h2>Novo Cadastro de Usuário</h2>
         
-        <form id='meuform' method="POST" action="../controllers/loginController.php" >
+        <form id='meuform' method="POST" action="../controllers/usuariosController.php" >
             <fieldset> <legend>Login</legend>
                 <input type="hidden" name="id"  />
                 <label>Usuário</label>

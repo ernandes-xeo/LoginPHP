@@ -11,7 +11,7 @@ $usuarios = $usarioDao->listar();
         </div>
         <p> Lista de Usuários
         <br />
-        <a href="../controllers/loginController.php?botao=cadastrar" style="float: right">Cadastrar</a>
+        <a href="../controllers/usuariosController.php?botao=cadastrar" style="float: right">Cadastrar</a>
         <br />
         <br />
         <table width="100%" border="1px">

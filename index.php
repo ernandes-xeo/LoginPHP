@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Meu index </h1>
-    <p> página de entreda
+    <p> página de entrada
         
         <a href="login.php">Logar no sistema</a>
 </body>
