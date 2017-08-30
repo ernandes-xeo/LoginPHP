@@ -42,6 +42,7 @@ class UsuarioDao {
         // metodo preparament 
         $sql = "SELECT * FROM usuario  where id = :id";
         $rs = Conexao::getInstance()->prepare($sql);
+        
         $rs->bindValue(":id", $user->getId());
 
         if ($rs->execute()) {

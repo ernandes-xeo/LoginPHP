@@ -29,6 +29,7 @@ if ($login->verificaLogin()) {
         <?php
         // include de aquivos para a formação da página
         include_once "./page/header.php";
+        
         include_once "./page/nav.php";
 
 
