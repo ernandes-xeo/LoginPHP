@@ -8,7 +8,8 @@ class Conexao {
     public function __construct() {
         //$this->conectar();
     }
-
+	
+	/* exemplo1 */
     public function conectar() {
         $host = 'localhost';
         $banco = 'banco_aula';
@@ -21,7 +22,7 @@ class Conexao {
         }
         return $this->con;
     }
-
+	/* exemplo2 */
     public static function getInstance() {
         if (!isset(self::$instance)) {
             self::$instance = new PDO('mysql:host=localhost;dbname=banco_aula', 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
