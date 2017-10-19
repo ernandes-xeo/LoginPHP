@@ -7,11 +7,14 @@ $usuarios = $usarioDao->listar();
     <div class="main-contener">
         <br />
         <div class="boxe">
-            <h2>Clientes</h2>
+            <h2>Usuarios</h2>
         </div>
         <p> Lista de Usuários
         <br />
-        <table width="100%">
+        <a href="../controllers/usuariosController.php?botao=cadastrar" style="float: right">Cadastrar</a>
+        <br />
+        <br />
+        <table width="100%" border="1px">
             <thead>
                 <td>Nome</td>
                 <td>Email</td>
@@ -21,14 +24,15 @@ $usuarios = $usarioDao->listar();
             <tbody>
                 <td><?php echo $usuario->getNome() ?></td>
                 <td><?php echo $usuario->getEmail() ?></td>
-                <td>
-                    <a href="../controllers/loginController.php?botao=exibir&id=<?php echo $usuario->getId() ?>">Exibir</a> | 
-                    <a href="../controllers/loginController.php?botao=editar&id=<?php echo $usuario->getId() ?>">Editar</a> | 
-                    <a href="../controllers/loginController.php?botao=excluir&id=<?php echo $usuario->getId() ?>">Excluir</a>
+                <td align="center">
+                    <a href="../controllers/usuariosController.php?botao=exibir&id=<?php echo $usuario->getId() ?>">Exibir </a> | 
+                    <a href="../controllers/usuariosController.php?botao=excluir&id=<?php echo $usuario->getId() ?>">Excluir</a>
+                   
                 </td>
             <?php } ?>
             </tbody>                    
         </table>  
+        <br />
     </div>
     <section id='left-destaques'>Left com destaques</section>
 </section>
