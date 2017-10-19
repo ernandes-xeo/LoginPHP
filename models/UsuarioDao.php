@@ -42,7 +42,7 @@ class UsuarioDao {
         // metodo preparament 
         $sql = "SELECT * FROM usuario  where id = :id";
         $rs = Conexao::getInstance()->prepare($sql);
-        
+
         $rs->bindValue(":id", $user->getId());
 
         if ($rs->execute()) {
@@ -53,20 +53,48 @@ class UsuarioDao {
                     $usario->setNome($row->nome);
                     $usario->setEmail($row->mail);
                     $usario->setUsuario($row->usuario);
+                    $usario->setSenha($row->senha);
                 }
                 return $usario;
-            }else{
+            } else {
                 return false;
             }
         }
     }
 
-    public function inserir($param) {
+    public function inserir(Usuario $user) {
         
     }
 
-    public function alterar($param) {
-        
+    public function alterar(Usuario $user) {
+
+        try {
+            
+            if($user->getSenha() == null){
+                $sql = "UPDATE usuario SET usuario= :usuario, nome=:nome, mail=:mail  where id = :id";
+            }else{
+                $sql = "UPDATE usuario SET usuario= :usuario, nome=:nome, mail=:mail, senha=:senha where id = :id";
+            }
+            
+            $rs = Conexao::getInstance()->prepare($sql);
+            $rs->bindValue(":usuario", $user->getUsuario());
+            $rs->bindValue(":nome", $user->getNome());
+            $rs->bindValue(":mail", $user->getEmail());
+            
+            /* REMOVE SENHA DO UPDATE*/
+            if($user->getSenha() != null)
+                $rs->bindValue(":senha", md5($user->getSenha()));
+                
+            $rs->bindValue(":id", $user->getId());
+
+            if ($rs->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $ex) {
+            print_r($ex);
+        }
     }
 
     public function excluir($param) {

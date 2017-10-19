@@ -27,11 +27,6 @@ switch ($botao) {
         // verifica se a senha nao está vazia
         if (!empty($_POST['senha']))
             $usuario->setSenha(md5($_POST['senha']));
-		
-		
-
-
-
 
         if (!$login->verificaLogin() && $login->logar($usuario)) {
             $_SESSION['usuario'] = $usuario->getNome();

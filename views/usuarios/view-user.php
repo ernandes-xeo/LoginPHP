@@ -4,6 +4,11 @@
         <?php 
         $usario = $_SESSION['dadosUser'];
        
+        if(!empty($_REQUEST['editar']) && $_REQUEST['editar'] == 'ok' ){
+            
+            echo "<span>Alterado com sucesso!</span>";
+            
+        }
         /*
             echo $usario->getId();
             echo "<br />";
@@ -30,7 +35,7 @@
                 <input id="mail" type="text" name="email" value="<?php if(!empty($usario->getEmail())) echo $usario->getEmail(); ?>" />
 
                 <label>Senha</label>
-                <input id="senha" type="text" name="senha" value="" />
+                <input id="senha" type="password" name="senha" value="" />
 
                 <input class="botao" type="submit" name="botao" value="editar" />
                 <a class='botao reset' href="index.php?op=usuarios">Voltar</a>

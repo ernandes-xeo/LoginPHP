@@ -5,10 +5,21 @@ $usuarios = $usarioDao->listar();
 ?>
 <section id="main">
     <div class="main-contener">
+        
+       
+        
         <br />
         <div class="boxe">
             <h2>Usuarios</h2>
         </div>
+        
+         <?php 
+        if(!empty($_REQUEST['editar']) && $_REQUEST['editar'] == 'ok' ){
+            
+            echo "<span>Alterado com sucesso!</span>";
+            
+        }
+        ?>
         <p> Lista de Usuários
         <br />
         <a href="../controllers/usuariosController.php?botao=cadastrar" style="float: right">Cadastrar</a>

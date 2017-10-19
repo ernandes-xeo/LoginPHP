@@ -25,9 +25,26 @@ switch ($botao) {
         header('location: ../views/index.php?op=userview');
         break;
     case 'editar':
-        var_dump($_REQUEST);
-        echo "Lógica para Editar";
-
+        $editarUser = new Usuario();
+        $editarUser->setId($_POST['id']);
+        $editarUser->setUsuario($_POST['user']);
+        $editarUser->setNome($_POST['nome']);
+        $editarUser->setEmail($_POST['email']);
+        
+        if(!empty($_POST['senha']))
+            $editarUser->setSenha($_POST['senha']);
+        else{
+            $editarUser->setSenha(null);
+        }
+        
+        /* Instancia da classe */
+        $userDao = new UsuarioDao($editarUser);
+        
+        if($userDao->alterar($editarUser)){
+            header('location: ../views/index.php?op=userview&editar=ok');
+        }
+        
+        
         break;
     case 'cadastrar':
         var_dump($_REQUEST);
