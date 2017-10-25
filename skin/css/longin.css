@@ -10,8 +10,11 @@ and open the template in the editor.
 
 /* resets */
 *{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 0; 
     font-family: Verdana, Geneva, Arial, sans-serif;
 }
 
@@ -54,7 +57,7 @@ form > fieldset > label{
 form > fieldset > input{
     display: block;
     width: 90%;
-    height: 1.5em;
+    height: 2.5em;
     margin: 0 0.5em 1em;
     padding: 0.5em;
 

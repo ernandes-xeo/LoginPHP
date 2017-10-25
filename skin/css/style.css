@@ -4,14 +4,18 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 14/05/2016, 10:42:46
+    Created on : 14/05/2016
+    Editado em: 25/10/2017
     Author     : Xeo
 */
 
 
 *{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 0; 
 }
 header{
     width: 100%;
@@ -96,6 +100,16 @@ nav ul li a{
 #main #right-destaques{
     width: 200px;
     float: right;
+}
+
+.success{
+    width: 100%;
+    display: block;
+    text-align: center;
+    background: #83df83;
+    color: green;
+    padding: 8px;
+    margin: 10px;
 }
 
 

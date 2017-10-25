@@ -62,8 +62,20 @@ class UsuarioDao {
         }
     }
 
+    /* cadastrar usuario */
     public function inserir(Usuario $user) {
         
+        $sql = "INSERT INTO usuario (usuario, nome, mail, senha) VALUES (:usuario,:nome, :mail, :senha)";
+        $rs = Conexao::getInstance()->prepare($sql);
+        $rs->bindValue(":usuario", $user->getUsuario());
+        $rs->bindValue(":nome", $user->getNome());
+        $rs->bindValue(":mail", $user->getEmail());
+        $rs->bindValue(":senha", md5($user->getSenha()));
+        if ($rs->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function alterar(Usuario $user) {
@@ -97,8 +109,16 @@ class UsuarioDao {
         }
     }
 
-    public function excluir($param) {
+    public function excluir($user_id){
+        $sql = 'DELETE FROM usuario where id = :id';
+        $rs = Conexao::getInstance()->prepare($sql);
+        $rs->bindValue(":id", $user_id);
         
+        if($rs->execute()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function listar() {

@@ -34,7 +34,7 @@ switch ($botao) {
             header($url);
         } else {
             $_SESSION['erro'] = 'Usuário ou senha inválidos. Por favor tente novamente!';
-            $url = 'location:../index.php';
+            $url = 'location:../login.php';
             header($url);
         }
 

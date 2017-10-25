@@ -13,11 +13,13 @@ if ($_REQUEST['botao'])
     $botao = $_REQUEST['botao'];
 
 $usuario = new Usuario();
+$userDao = new UsuarioDao(); // instancia da classe dao
+
 switch ($botao) {
 
     case 'exibir':
         // echo "Receber paramento do cliente para consultar no banco de dados";
-        var_dump($_REQUEST);
+        //var_dump($_REQUEST);
         $id = $_REQUEST['id'];
         $usuario->setId($id);
         $res = $usuario->localizar($usuario);
@@ -30,37 +32,49 @@ switch ($botao) {
         $editarUser->setUsuario($_POST['user']);
         $editarUser->setNome($_POST['nome']);
         $editarUser->setEmail($_POST['email']);
-        
-        if(!empty($_POST['senha']))
+
+        if (!empty($_POST['senha']))
             $editarUser->setSenha($_POST['senha']);
-        else{
+        else {
             $editarUser->setSenha(null);
         }
-        
-        /* Instancia da classe */
-        $userDao = new UsuarioDao($editarUser);
-        
-        if($userDao->alterar($editarUser)){
-            header('location: ../views/index.php?op=userview&editar=ok');
+
+        if ($userDao->alterar($editarUser)) {
+            header('location: ../views/index.php?op=usuarios&editar=ok');
         }
-        
-        
+
+
         break;
     case 'cadastrar':
-        var_dump($_REQUEST);
         header("location: ../views/index.php?op=cadastrar");
         break;
 
     case 'Salvar':
-        var_dump($_REQUEST);
-        echo "Lógica para cadastrar aqui";
+
+        /*
+         * Validar se o post da senha é igual - Implementar
+         * Validar os campos recebido do formulário
+         */
+        $usuario->setUsuario($_POST['user']);
+        $usuario->setNome($_POST['nome']);
+        $usuario->setEmail($_POST['email']);
+        $usuario->setSenha($_POST['senha']);
+
+        if ($userDao->inserir($usuario)) {
+            $url = 'location: ../views/index.php?op=usuarios&sucesso=ok';
+            header($url);
+        }
         break;
     case 'excluir':
         var_dump($_REQUEST);
-        echo "Lógica para Excluir";
-
+        $id = $_REQUEST['id'];
+        
+        if($userDao->excluir($id)){
+            $url = 'location: ../views/index.php?op=usuarios&excluir=ok';
+            header($url);
+        }
         break;
     default:
-        
+
         break;
 }
