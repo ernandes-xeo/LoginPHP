@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/htdocs/3tia/LoginOOB/index.php</file>
-            <file>file:/D:/htdocs/3tia/LoginOOB/skin/css/longin.css</file>
-            <file>file:/D:/htdocs/3tia/LoginOOB/controllers/loginController.php</file>
-            <file>file:/D:/htdocs/3tia/LoginOOB/controllers/usuariosController.php</file>
-            <file>file:/D:/htdocs/3tia/LoginOOB/skin/css/style.css</file>
-            <file>file:/D:/htdocs/3tia/LoginOOB/login.php</file>
             <file>file:/D:/htdocs/3tia/LoginOOB/views/index.php</file>
+            <file>file:/D:/htdocs/3tia/LoginOOB/login.php</file>
             <file>file:/D:/htdocs/3tia/LoginOOB/models/UsuarioDao.php</file>
             <file>file:/D:/htdocs/3tia/LoginOOB/views/usuarios/usuarios.php</file>
-            <file>file:/D:/htdocs/3tia/LoginOOB/views/usuarios/view-user.php</file>
         </group>
     </open-files>
 </project-private>

@@ -1,7 +1,21 @@
 <?php
 include_once '../models/UsuarioDao.php';
 $usarioDao = new UsuarioDao();
-$usuarios = $usarioDao->listar();
+@$p = $_GET['p'];
+$qnt = 5;
+if(!empty($p)){
+    $p = $p;
+}else{
+    $p=1;
+}
+
+$max_links = 3;
+$total = count($usarioDao->listar());
+$pags = ceil($total);
+
+
+
+$usuarios = $usarioDao->listarPaginas($p, $qnt);
 ?>
 
 <script>
@@ -45,6 +59,27 @@ $usuarios = $usarioDao->listar();
             <a href="../controllers/usuariosController.php?botao=cadastrar" style="float: right">Cadastrar</a>
             <br />
             <br />
+            <?php 
+                for($i=$p-$max_links; $i <= $p-1;$i++){
+                    if($i <=0 ){
+                    }else {
+                       echo " <a href='index.php?op=usuarios&p=".$i."'> " .$i. " </a>";
+                    }
+                }
+                echo $p;
+                for($i = $p+1;$i<=$p+$max_links;$i++){
+                    if($i > $pags){
+                        
+                    }
+                    else {
+                        echo "<a href='index.php?op=usuarios&p=".$i."'> " .$i. " </a>";
+                    }
+                }
+                echO "<a href='index.php?op=usuarios&p='".$pags."'>ultima página</a>"
+
+            ?>
+            
+            
         <table width="100%" border="1px">
             <thead>
             <td>Usuário</td>
@@ -63,7 +98,8 @@ $usuarios = $usarioDao->listar();
 
                 </td>
             <?php } ?>
-            </tbody>                    
+            </tbody>
+            
         </table>  
         <br />
     </div>

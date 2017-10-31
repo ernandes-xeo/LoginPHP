@@ -63,8 +63,9 @@ class UsuarioDao {
     }
 
     /* cadastrar usuario */
+
     public function inserir(Usuario $user) {
-        
+
         $sql = "INSERT INTO usuario (usuario, nome, mail, senha) VALUES (:usuario,:nome, :mail, :senha)";
         $rs = Conexao::getInstance()->prepare($sql);
         $rs->bindValue(":usuario", $user->getUsuario());
@@ -81,22 +82,22 @@ class UsuarioDao {
     public function alterar(Usuario $user) {
 
         try {
-            
-            if($user->getSenha() == null){
+
+            if ($user->getSenha() == null) {
                 $sql = "UPDATE usuario SET usuario= :usuario, nome=:nome, mail=:mail  where id = :id";
-            }else{
+            } else {
                 $sql = "UPDATE usuario SET usuario= :usuario, nome=:nome, mail=:mail, senha=:senha where id = :id";
             }
-            
+
             $rs = Conexao::getInstance()->prepare($sql);
             $rs->bindValue(":usuario", $user->getUsuario());
             $rs->bindValue(":nome", $user->getNome());
             $rs->bindValue(":mail", $user->getEmail());
-            
-            /* REMOVE SENHA DO UPDATE*/
-            if($user->getSenha() != null)
+
+            /* REMOVE SENHA DO UPDATE */
+            if ($user->getSenha() != null)
                 $rs->bindValue(":senha", md5($user->getSenha()));
-                
+
             $rs->bindValue(":id", $user->getId());
 
             if ($rs->execute()) {
@@ -109,15 +110,42 @@ class UsuarioDao {
         }
     }
 
-    public function excluir($user_id){
+    public function excluir($user_id) {
         $sql = 'DELETE FROM usuario where id = :id';
         $rs = Conexao::getInstance()->prepare($sql);
         $rs->bindValue(":id", $user_id);
-        
-        if($rs->execute()){
+
+        if ($rs->execute()) {
             return true;
-        }else{
+        } else {
             return false;
+        }
+    }
+
+    public function listarPaginas($p, $qnt) {
+        try {
+            
+            $inicio = ($p*$qnt) - $qnt;
+            
+            $sql = "SELECT * FROM usuario LIMIT {$inicio},{$qnt}";
+
+            $result = Conexao::getInstance()->prepare($sql);
+            $result->execute();
+            
+            $lista = array();
+            $i = 0;
+            while ($row = $result->fetch(PDO::FETCH_OBJ)) {
+                $usario = new Usuario();
+                $usario->setId($row->id);
+                $usario->setNome($row->nome);
+                $usario->setEmail($row->mail);
+                $usario->setUsuario($row->usuario);
+                $lista[$i] = $usario;
+                $i++;
+            }
+            return $lista;
+        } catch (Exception $e) {
+            print "Ocorreu um erro ao tentar executar esta ação, foi gerado um LOG do mesmo, tente novamente mais tarde.";
         }
     }
 
